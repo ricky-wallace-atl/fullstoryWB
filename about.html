@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<title>FullStory Fuel Calculator</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="js/wbcalc.js"></script>
+<script src="js/aircraft.js"></script>
+<script src="js/fullstory.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.9.4/firebase.js"></script>
+
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+</style>
+
+
+<body class="w3-light-grey" onload="setup('aircraft')">
+
+<!-- Top container -->
+<div class="w3-bar w3-top w3-black w3-large" style="z-index:4">
+    <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
+  <span class="w3-bar-item w3-right">Fuel Calculator</span>
+</div>
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+  <div class="w3-container w3-row">
+  <div class="w3-container">
+    <h5>Dashboard</h5>
+  </div>
+  <div class="w3-bar-block">
+    <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
+    <a href="index.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>  Fuel Calculation</a>
+    <a href="aircraft.html" class="w3-bar-item w3-button"><i class="fa fa-users fa-fw"></i>  Aircraft</a>
+    <a href="github.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>  GitHub &amp; Fullstory</a>
+    <a href="about.html" class="w3-bar-item w3-button w3-padding w3-padding w3-blue"><i class="fa fa-eye fa-fw"></i>  About</a>
+  </div>
+</nav>
+
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:300px;margin-top:43px;">
+
+  
+  <div class="w3-panel w3-twothird">
+  <p>Hello!  My name is Ricky Wallace, and this is my submission to The Challenge, as requested by Fullstory.  This was a fun and indeed challenging project!</p>
+  <p>
+  For my challenge, I chose to make a very simple web app for one of my hobbies - flying!  Before taking any flight, you must calculate weight and balance, and determine how much fuel you can take.  <a href="https://www.foreflight.com/">Many</a> <a href="https://buy.garmin.com/en-US/US/p/115856">apps</a> <a href="https://apps4av.com/avare-overview/">on the market</a> will calculate weight and balance, but fuel is always a guess-and-check operation.  So this app will give you an exact fuel amount based on the loading of the aircraft.
+  </p>
+  <p>
+  To use, simply navigate to the Fuel Calculation page, select an aircraft, and enter the weights.  Fuel tolerances will automatically be calculated as you change the values.  If you are overweight, the app will tell you how much weight you need to cut, and if you are within 15 gallons, the text will be orange to indicate the low fuel availability.
+  </p>
+  <p>
+  You can add or remove aircraft on the Aircraft page using the buttons available.
+  </p>
+  <p>
+  I decided to further challenge myself in this project by using:
+  <ul>
+  <li> <a href="http://firebase.google.com">Firebase, the free Google noSQL database-as-a-service</a> toolset.  I had not used it prior, but found it fairly simple to implement.</li>
+  <li><a href="https://www.chartjs.org/">Chart.js</a> for rendering the charts on the GitHub page.  I found it to be a pretty powerful tool for simple charts.</li>
+  <li>In addition, the CSS is a modified version of a <a href="https://www.w3schools.com/w3css/tryw3css_templates_analytics.htm">template from W3</a> that includes responsive elements and some modern CSS layouts.</li>
+  </ul>
+  </p>
+  <p>
+  Disclaimers:
+  <li>This was written from scratch in a few days.  Please excuse the lack of...........coding finesse :)</li>
+  <li>This website is a demonstration.  Do not use this to actually calculate Weight and Balance for preflight.  There are other factors that go into Weight and Balance that should be considered.</li>
+  </p>
+  </div>
+
+  <div class="w3-panel w3-third">
+  <img src="img/ricky.png" style='height: 100%; width: 100%; object-fit: contain' />
+  </div>
+
+  <!-- End page content -->
+</div>
+
+<script>
+// Get the Sidebar
+var mySidebar = document.getElementById("mySidebar");
+
+// Get the DIV with overlay effect
+var overlayBg = document.getElementById("myOverlay");
+
+// Toggle between showing and hiding the sidebar, and add overlay effect
+function w3_open() {
+  if (mySidebar.style.display === 'block') {
+    mySidebar.style.display = 'none';
+    overlayBg.style.display = "none";
+  } else {
+    mySidebar.style.display = 'block';
+    overlayBg.style.display = "block";
+  }
+}
+
+// Close the sidebar with the close button
+function w3_close() {
+  mySidebar.style.display = "none";
+  overlayBg.style.display = "none";
+}
+</script>
+
+</body>
+</html>
